@@ -1,0 +1,12 @@
+NIO为java1.4开  始提供的一系列改进的输入/输出处理的类.
+
+Buffer：
+Buffer的主要作用就是装入数据，取出数据。Buffer有三个重要的概念。容量(capacity)：缓冲区的容量，表示Buffer的最大数据容量。，创建
+后不能被改变。界限(limit):第一个不应该被读出或写入的缓冲区索引。即limit后的数据不能被读写操作。位置(position):用于指明下一个可被读
+出或者写入的缓冲位置索引。当调用Buffer的flip()方法后，limit设置为position所在的位置，并将position设为0.Buffer的clear方法不
+是清空数据，而是将position设置为0，limit设置为capacity，这样为再次向Buffer装入数据做好准备.
+
+Channel:
+程序不能直接访问Channel中的数据，Channel必须与Buffer交互。
+所有Channel都应该用传统节点的InputStream，OutputStream的getChannel方法获得。Channel的map方法将Channel对应的部分或全部
+数据映射成ByteBuffer，他的read(),write()方法都有一系列重载形式，用于从Buffer中读取或写入操作。

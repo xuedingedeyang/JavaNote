@@ -1,0 +1,11 @@
+Java5开始支持用Excutors工厂类来产生线程池，提供一下静态方法来创建线程池
+newCacheThredPool();创建一个具有缓存功能的线程池
+newFixdThreadPool(int nThreads);创建一个可重用的，具有固定数量的线程池
+newSingleThreadExcutor();创建一个只有单线程的线程池，相当于调用newFixThreadPool方法传入参数为1
+newScheduleThreadPool(int corePoolSize);创建具有指定数目的线程池，他可以在指定延迟后台执行线程任务
+ExcurorService newWorkStealingPool(int parallelism);
+ExcutorService newWorkStealingPool();
+
+
+Java为线程安全提供了一些工具类
+ThreadLocal代表一个线程局部变量，通过把数据放在ThreadLocal中就可以让每个线程创建该变量的副本，避免并发访问发生线程安全问题

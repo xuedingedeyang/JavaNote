@@ -1,0 +1,18 @@
+Java7对NIO进行改进，提供了NIO2；
+
+Paths: Paths提供了get(String first,String...more)方法来获取Path对象，Paths会将给定的多个字符串联成路径.
+
+Files
+
+FileVisitor：
+Files类提供两个方法来遍历文件和目录:
+  walkFileTree(Path start,FileVisitor<? super visitor>):遍历start路径下所有文件和子目录
+  walkFileTree(Path start,Set<FileVisitorOption>options,int maxDepth,FileVisitor<? super Path> visitor)
+  与上一个方法相似。该方法最多遍历maxDepth深度的文件
+ FileVisitor代表一个文件访问器,walkFileTree方法会自动边路start目录下所有文件和子目录，遍历子目录和文件都会触发FileVisitor
+  中相应的方法，方法会返回一个FileVisitorResult的枚举类，FileVisitorResult定义了一下几种后续行为
+  CONTINUE:代表“继续访问”的后续行为
+  SKIP_SIBLINGS:代表“继续访问”的后续行为，但不访问该文件或目录下的兄弟文件或目录
+  SKIP_SUBTREE:代表"继续访问"的后续行为，但不访问该文件或目录的子目录树
+  TERMINATE:代表“终止访问”的后续行为 
+  

@@ -48,7 +48,7 @@ public class DownUtil {
 			int currentPartSize = fileSize/threadNum + 1;
 			RandomAccessFile file = new RandomAccessFile(targetFile, "rw");
 			
-			file.setLength(fileSize + 1);
+			file.setLength(fileSize);
 			file.close();
 			for(int i = 0 ; i < threadNum ; i++)
 			{

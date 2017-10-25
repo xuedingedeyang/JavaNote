@@ -1,4 +1,4 @@
-创建新的数据库:
+﻿创建新的数据库:
 
 create database [if not exists] 数据库名     
 
@@ -17,6 +17,8 @@ show tables
 查看数据库结构:
 
 desc 表名  
+
+show columns from 表名
 
 建表:
 
@@ -341,6 +343,9 @@ insert into student_table2 (student_name) select teacher_name from teacher_table
 
 insert into teacher_table2 values (null,"yaya"),(null,"nana");
 
+insert into teacher_table2 set teacher_id=1,teacher_name='monica';
+
+
 update语句
 
 ex:
@@ -376,6 +381,16 @@ select * from teacher_table;
 
 ex:
 select student_name from student_table where java_teacher >= 3;
+
+limit限制查询记录条数
+
+ex:
+
+select * from student limit 2;
+
+ex:从第4个记录开始查询两条记录(记录编号从0开始)
+
+select * from student limit 3,2;
 
 使用算术符
 

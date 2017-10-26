@@ -679,4 +679,15 @@ minus（MySQL不支持）
 select student_id ,student_name from student_table
 
 minus
+
 select teacher_id ,teacher_name from teacher_table;
+
+
+
+set autocommit={0 | 1} 0为关闭自动提交,即开启事务
+
+或者用begin 及 start transaction开启事务，这样的话必须用commit显式提交事务
+
+rollback  回滚事务
+
+savepoint point_name;  为事务设置中间点，这样就可以使用 rollback to point_name 回滚到中间点

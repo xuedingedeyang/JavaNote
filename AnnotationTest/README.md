@@ -31,3 +31,7 @@ public class test
 	}
 }
 ```
+
+***Annotation的一条重要原则就是去掉它不会对程序有任何影响***
+
+

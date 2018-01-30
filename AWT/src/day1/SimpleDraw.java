@@ -47,7 +47,8 @@ public class SimpleDraw {
 	
 	public class MyCanvas extends Canvas
 	{
-		public void pain(Graphics g)
+		@Override
+		public void paint(Graphics g)
 		{
 			Random rand = new Random();
 			if(shape.equals(RECT_SHAP))

@@ -1,7 +1,7 @@
 package com.yang.proxy;
 
 import java.io.File;
-import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import javax.tools.JavaCompiler;
@@ -13,7 +13,7 @@ import org.apache.commons.io.FileUtils;
 
 public class Proxy {
 	@SuppressWarnings("deprecation")
-	public static Object newProxyInstance(Class infce) throws Exception
+	public static Object newProxyInstance(Class infce,InvocationHandler h) throws Exception
 	{
 		String rt = "\r\n";
 		String methodStr = "";
@@ -21,25 +21,22 @@ public class Proxy {
 		{
 			methodStr+="@Override"+ rt +
 			"public void "+m.getName()+" (){"+ rt +
-			"	long startTime = System.currentTimeMillis();"+ rt +
-			"	System.out.println(\"汽车开始行驶...\");"+ rt +
-			"	m."+m.getName()+"();"+ rt +
-			"	long endTime = System.currentTimeMillis();"+ rt +
-			"	System.out.println(\"汽车结束行驶...\");"+ rt +
-			"	System.out.println(\"汽车行驶时间：\"+(endTime - startTime)+\"毫秒\");"+ rt +
+			"try{"+rt+
+			"Method md = "+infce.getName()+".class.getMethod(\""+m.getName()+"\");"+rt+
+			"h.invoke(this,md);"+rt+
+			"}catch(Exception e){e.printStackTrace();}"+rt+	
 			"}";
 
 		}
 		String str =
-	"package com.yang.proxy; "+ rt +
-
+	"package com.yang.proxy;"+ rt +
+	"import com.yang.proxy.InvocationHandler;"+rt+
+	"import java.lang.reflect.Method;"+
 	"public class $Proxy0 implements "+ infce.getName()+"{"+ rt +
-	"private  "+ infce.getName()+" m;"+ rt +
-	
-	"public $Proxy0( "+ infce.getName()+" m)"+ rt +
+	"private InvocationHandler h;"+rt+
+	"public $Proxy0(InvocationHandler h)"+ rt +
 	"{"+ rt +
-	"	super();"+ rt +
-	"	this.m = m;"+ rt +
+	"	this.h = h;"+ rt +
 	"}"+ rt +
 	methodStr+rt+
 "}";
@@ -58,6 +55,11 @@ public class Proxy {
 		//进行编译
 		t.call();
 		fileMgr.close();
-		return null;
+		//load到内存中
+		ClassLoader cl = ClassLoader.getSystemClassLoader();
+		Class c = cl.loadClass("com.yang.proxy.$Proxy0");
+		System.out.println(c.getName());
+		Constructor ctr = c.getConstructor(InvocationHandler.class);
+		return ctr.newInstance(h);
 	}
 }

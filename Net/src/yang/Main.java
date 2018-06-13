@@ -1,37 +1,49 @@
 package yang;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+//字节流实现
 public class Main {
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-        char[] arr = str.toCharArray();
-        Map<Character,Integer> map = new HashMap<>();
-        for(int i=0;i < arr.length;i++)
-        {
-            if(!(arr[i]>='a' && arr[i] <= 'z') && !(arr[i]>='A' && arr[i] <= 'Z'))
-            {
-                continue;
-            }
-            if(!map.containsKey(arr[i]))
-            {
-                map.put(arr[i],1);
-            }
-            else
-            {
-                int t = map.get(arr[i])+1;
-                if(t >= 3)
-                {
-                    System.out.println(arr[i]);
-                    break;
-                }
-                map.put(arr[i],t);
-            }
-        }
+    	File sourceFile = null,destFile = null;
+    	BufferedReader br = null;
+    	BufferedWriter bw = null;
+    	
+    	sourceFile = new File("a.txt");
+    	destFile = new File("b.txt");
+    	
+    	try {
+			br = new BufferedReader(new FileReader(sourceFile));
+			bw = new BufferedWriter(new FileWriter(destFile));
+			String content = "";
+			while((content=br.readLine())!=null){
+				bw.write(content);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				bw.close();
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
     }
-
 }

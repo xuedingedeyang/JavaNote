@@ -15,7 +15,7 @@ public class StudentDao extends BaseDao{
 	public Student getStudentBySno(String sno){
 		try {
 			conn = getConnection();
-			
+			System.out.println("dao"+sno);
 			PreparedStatement ps =  conn.prepareStatement("select * from student where Sno = ?");
 			ps.setString(1, sno);
 			ResultSet rs = ps.executeQuery();
@@ -29,13 +29,18 @@ public class StudentDao extends BaseDao{
 				st.setSpassword(rs.getString("Spassword"));
 				st.setStel(rs.getString("Stel"));
 				st.setSno(sno);
-				System.out.println("Dao "+st);
 			}
-			conn.close();
 			return st;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}
@@ -49,13 +54,13 @@ public class StudentDao extends BaseDao{
 			if(rs!=null){
 				rs.last();
 				list = new ArrayList<>();
-				while(rs.previous()){
+				do{
 					STGrade sg = new STGrade();
 					sg.setCourseName(rs.getString("Cname"));
 					sg.setTeacherName(rs.getString("Tname"));
 					sg.setGrade(rs.getFloat("Grade"));
 					list.add(sg);
-				}
+				}while(rs.previous());
 				return list;
 			}
 		} catch (SQLException e) {

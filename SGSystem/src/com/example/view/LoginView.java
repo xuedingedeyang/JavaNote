@@ -102,7 +102,7 @@ public class LoginView implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("ÍË³ö")){
-			this.dispose();
+			this.close();
 		}else{
 			String username = usernameText.getText();
 			String password = passwordField.getText();
@@ -114,7 +114,7 @@ public class LoginView implements ActionListener{
 			}else if(studentRadio.isSelected()){
 				if(loginServce.studentLogin(username, password)){
 					System.out.println("µÇÂ¼³É¹¦");
-					
+					new StudentView(username).frame.setVisible(true);;
 					this.close();
 				}else{
 					System.out.println("µÇÂ¼Ê§°Ü");

@@ -9,7 +9,6 @@ public class LoginService {
 	
 	public boolean studentLogin(String username,String password){
 		Student st = sd.getStudentBySno(username);
-		System.out.println("Service "+st); 
 		if(st == null){
 			return false;
 		}else if(!password.equals(st.getSpassword())){

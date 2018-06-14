@@ -1,10 +1,22 @@
 package com.example.bean;
 
+import java.util.List;
+
 public class Teacher {
 	private String Tno;
 	private String Tname;
 	private String TSex;
 	private String Tpassword;
+	private Course course;
+	
+	
+	
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 	public String getTno() {
 		return Tno;
 	}

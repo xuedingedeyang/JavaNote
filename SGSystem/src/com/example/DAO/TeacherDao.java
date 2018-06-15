@@ -29,14 +29,36 @@ public class TeacherDao extends BaseDao{
 					t.setTname(rs.getString("Tname"));
 					t.setTno(rs.getString("Tno"));
 					t.setTSex(rs.getString("Tsex"));
+					list.add(t);
 				}while(rs.previous());
 			}
 			for(Teacher t:list){
-				
+				st = conn.createStatement();
+				rs = st.executeQuery("select * from course c,teacher t where t.Cno=c.Cno and t.Tno = "+t.getTno());
+				if(rs!=null){
+					rs.last();
+					Course c = null;
+					do{
+						c = new Course();
+						c.setCno(rs.getString("Cno"));
+						c.setCname(rs.getString("Cname"));
+						c.setCtime(rs.getString("Ctime"));
+						c.setCcredit(rs.getString("Ccredit"));
+						c.setCremarks(rs.getString("Cremarks"));
+					}while(rs.previous());
+					t.setCourse(c);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return list;
 	}
 }

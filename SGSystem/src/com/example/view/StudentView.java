@@ -89,6 +89,7 @@ public class StudentView implements ActionListener{
 		depLb.setText(st.getStel());
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setEnabled(false);
 		scrollPane_1.setBounds(38, 131, 500, 262);
 		frame.getContentPane().add(scrollPane_1);
 		frame.setLocationRelativeTo(null);
@@ -105,6 +106,7 @@ public class StudentView implements ActionListener{
 			System.out.println(items[i][0].toString()+","+items[i][1].toString()+","+items[i][2].toString());
 		}
 		table = new JTable(items,name);
+		table.setEnabled(false);
 		
 		scrollPane_1.setViewportView(table);
 		
@@ -116,7 +118,7 @@ public class StudentView implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
+		new ChooseCourseView().frame.setVisible(true);;
+		this.frame.dispose();
 	}
 }

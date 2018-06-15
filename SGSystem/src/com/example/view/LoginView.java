@@ -115,7 +115,7 @@ public class LoginView implements ActionListener{
 				if(loginServce.studentLogin(username, password)){
 					System.out.println("µÇÂ¼³É¹¦");
 					new StudentView(username).frame.setVisible(true);;
-					this.close();
+					this.frame.dispose();
 				}else{
 					System.out.println("µÇÂ¼Ê§°Ü");
 				}

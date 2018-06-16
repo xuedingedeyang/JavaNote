@@ -9,7 +9,7 @@ public class TeacherService {
 	private TeacherDao td = new TeacherDao();
 	
 	public Teacher getTeacherByTno(String tno){
-		return null;
+		return td.getTeacherByTno(tno);
 	}
 	
 	public List<Teacher> getAllTeacher(){

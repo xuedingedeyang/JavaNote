@@ -3,6 +3,7 @@ package com.example.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultCellEditor;
@@ -22,6 +23,7 @@ import javax.swing.table.TableModel;
 import com.example.bean.Course;
 import com.example.bean.Teacher;
 import com.example.service.CourseService;
+import com.example.service.STService;
 import com.example.service.TeacherService;
 import com.example.util.MyTableModel;
 
@@ -34,11 +36,16 @@ public class ChooseCourseView implements ActionListener{
 	private JTable table;
 	private CourseService cs;
 	private TeacherService ts;
+	private STService stService;
+	private String sno;
+	MyTableModel model;
+	List<Teacher>teachers = null;
 
 	/**
 	 * Create the application.
 	 */
-	public ChooseCourseView() {
+	public ChooseCourseView(String sno) {
+		this.sno = sno;
 		initialize();
 	}
 
@@ -48,6 +55,7 @@ public class ChooseCourseView implements ActionListener{
 	private void initialize() {
 		cs = new CourseService();
 		ts = new TeacherService();
+		stService = new STService();
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 582, 426);
@@ -59,8 +67,8 @@ public class ChooseCourseView implements ActionListener{
 		scrollPane.setVisible(true);
 		frame.getContentPane().add(scrollPane);
 		
-		List<Teacher>list = ts.getAllTeacher();
-		if(list.size()==0||list==null){
+		teachers = ts.getAllTeacher();
+		if(teachers.size()==0||teachers==null){
 			JOptionPane.showMessageDialog(this.frame, "查不到课程");
 		}
 		
@@ -73,7 +81,7 @@ public class ChooseCourseView implements ActionListener{
 //			items[i][3] = list.get(i).getCourse().getCcredit();
 //			System.out.println(items[i][0]+","+items[i][1]);
 //		}
-		MyTableModel model = new MyTableModel(list);
+		model = new MyTableModel(teachers);
 		table = new JTable(model);
 		table.setFillsViewportHeight(true);
 		table.setColumnSelectionAllowed(true);
@@ -83,14 +91,29 @@ public class ChooseCourseView implements ActionListener{
 		table.setVisible(true);
 		scrollPane.setViewportView(table);
 		
-		JButton confirmBtn = new JButton("\u786E\u8BA4");
+		JButton confirmBtn = new JButton("确认");
 		confirmBtn.setBounds(373, 364, 93, 23);
+		confirmBtn.addActionListener(this);
 		frame.getContentPane().add(confirmBtn);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		List<String> tnos = new ArrayList<>();
+		for(int i=0;i<model.getRowCount();i++){
+			System.out.println( model.getValueAt(i, model.getColumnCount()-1));
+			if((boolean) model.getValueAt(i, model.getColumnCount()-1)){
+				tnos.add(teachers.get(i).getTno());
+			}
+		}
+		int a = stService.addBatch(sno, tnos);
+		if(a==1){
+			JOptionPane.showMessageDialog(this.frame, "选课成功！");
+		}else if(a==-1){
+			JOptionPane.showMessageDialog(this.frame, "选课失败，检查是否重复选择了课程!");
+		}else if(a==0){
+			JOptionPane.showMessageDialog(this.frame, "请选择课程!");
+		}
 		
 	}
 }

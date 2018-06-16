@@ -14,8 +14,14 @@ import com.example.bean.Course;
 import com.example.bean.Teacher;
 
 public class TeacherDao extends BaseDao{
+	Connection conn = null;
+	CourseDao cd = null;
+	public TeacherDao() {
+		super();
+	}
+
 	public List<Teacher> getAllTeacher(){
-		Connection conn = null;
+		conn = null;
 		List<Teacher>list = null;
 		conn = getConnection();
 		try {
@@ -32,12 +38,12 @@ public class TeacherDao extends BaseDao{
 					list.add(t);
 				}while(rs.previous());
 			}
+			Course c = null;
 			for(Teacher t:list){
 				st = conn.createStatement();
 				rs = st.executeQuery("select * from course c,teacher t where t.Cno=c.Cno and t.Tno = "+t.getTno());
 				if(rs!=null){
 					rs.last();
-					Course c = null;
 					do{
 						c = new Course();
 						c.setCno(rs.getString("Cno"));
@@ -60,5 +66,32 @@ public class TeacherDao extends BaseDao{
 			}
 		}
 		return list;
+	}
+
+	public Teacher getTeacherByTno(String tno) {
+		conn = getConnection();
+		Statement st;
+		Teacher t = null;
+		if(cd == null){
+			cd = new CourseDao();
+		}
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from teacher where Tno = "+tno);
+			
+			if(rs!=null){
+				t = new Teacher();
+				rs.first();
+				t.setTno(rs.getString("Tno"));
+				t.setTname(rs.getString("Tname"));
+				t.setTSex(rs.getString("Tsex"));
+				t.setCourse(cd.getCourseByCno(rs.getString("Cno")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return t;
 	}
 }

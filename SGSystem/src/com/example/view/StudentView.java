@@ -95,7 +95,6 @@ public class StudentView implements ActionListener{
 		frame.setLocationRelativeTo(null);
 		
 		
-		
 		Object name[]={"课程","代课教师","成绩"};
 		List<STGrade>list = stService.getGrade(Sno);
 		Object[][] items = new Object[list.size()][name.length];
@@ -113,12 +112,22 @@ public class StudentView implements ActionListener{
 		JButton chooseCourseBtn = new JButton("\u9009\u8BFE");
 		chooseCourseBtn.setBounds(436, 413, 93, 23);
 		frame.getContentPane().add(chooseCourseBtn);
+		
+		JButton backBtn = new JButton("返回");
+		backBtn.addActionListener(this);
+		backBtn.setBounds(48, 413, 93, 23);
+		frame.getContentPane().add(backBtn);
 		chooseCourseBtn.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new ChooseCourseView().frame.setVisible(true);;
-		this.frame.dispose();
+		if(e.getActionCommand().equals("返回")){
+			new LoginView().frame.setVisible(true);
+			this.frame.dispose();
+		}else if(e.getActionCommand().equals("选课")){
+			new ChooseCourseView(this.Sno).frame.setVisible(true);
+			this.frame.dispose();
+		}
 	}
 }

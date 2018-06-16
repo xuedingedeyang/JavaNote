@@ -13,8 +13,26 @@ import com.example.bean.Teacher;
 public class CourseDao extends BaseDao{
 	private TeacherDao td = new TeacherDao();
 	public Course getCourseByCno(String cno){
-		
-		return null;
+		Connection conn = getConnection();
+		Statement st;
+		Course c = null;
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery("select * from course where Cno="+cno);
+			if(rs!=null){
+				rs.first();
+				c=new Course();
+				c.setCno(rs.getString("Cno"));
+				c.setCname(rs.getString("Cname"));
+				c.setCtime(rs.getString("Ctime"));
+				c.setCcredit(rs.getString("Ccredit"));
+				c.setCremarks(rs.getString("Cremarks"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
 	}
 	
 	public List<Course>getAllCourse(){

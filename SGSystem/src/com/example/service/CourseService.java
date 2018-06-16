@@ -11,5 +11,9 @@ public class CourseService {
 	public List<Course>getAllCourse(){
 		return cd.getAllCourse();
 	}
+	
+	public Course getCourseByCno(String cno){
+		return null; 
+	}
 
 }

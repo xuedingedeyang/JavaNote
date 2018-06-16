@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -119,9 +121,11 @@ public class LoginView implements ActionListener{
 				}else{
 					System.out.println("登录失败");
 				}
-			}else{
+			}else if(teacherRadio.isSelected()){
 				
 				System.out.println("教师");
+			}else{
+				JOptionPane.showMessageDialog(this.frame, "请选择身份");
 			}
 		}
 	}

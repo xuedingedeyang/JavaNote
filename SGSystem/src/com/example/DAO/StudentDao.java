@@ -49,7 +49,8 @@ public class StudentDao extends BaseDao{
 		conn = getConnection();
 		List<STGrade> list = null;
 		try {
-			PreparedStatement ps = conn.prepareStatement("select course.Cname,teacher.Tname,ST.Grade from student,ST,teacher,course where student.Sno=ST.Sno and St.Tno = teacher.Tno and teacher.Cno=course.Cno and student.Sno='1607084101'");
+			PreparedStatement ps = conn.prepareStatement("select course.Cname,teacher.Tname,ST.Grade from student,ST,teacher,course where student.Sno=ST.Sno and St.Tno = teacher.Tno and teacher.Cno=course.Cno and student.Sno='?'");
+			ps.setString(1, sno);
 			ResultSet rs = ps.executeQuery();
 			if(rs!=null){
 				rs.last();

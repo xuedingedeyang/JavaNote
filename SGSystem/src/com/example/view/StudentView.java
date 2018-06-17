@@ -53,11 +53,11 @@ public class StudentView implements ActionListener{
 		scrollPane.setBounds(0, 0, 2, 2);
 		frame.getContentPane().add(scrollPane);
 		
-		JLabel label = new JLabel("\u59D3\u540D\uFF1A");
+		JLabel label = new JLabel("ÐÕÃû:");
 		label.setBounds(48, 62, 40, 15);
 		frame.getContentPane().add(label);
 		
-		JLabel nameLb = new JLabel("\u674E\u7EA2");
+		JLabel nameLb = new JLabel();
 		nameLb.setFont(new Font("ËÎÌå", Font.BOLD, 13));
 		nameLb.setBounds(98, 62, 54, 15);
 		frame.getContentPane().add(nameLb);
@@ -112,7 +112,7 @@ public class StudentView implements ActionListener{
 		}
 		
 		
-		JButton chooseCourseBtn = new JButton("\u9009\u8BFE");
+		JButton chooseCourseBtn = new JButton("Ñ¡¿Î");
 		chooseCourseBtn.setBounds(436, 413, 93, 23);
 		frame.getContentPane().add(chooseCourseBtn);
 		

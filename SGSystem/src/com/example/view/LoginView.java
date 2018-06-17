@@ -60,7 +60,7 @@ public class LoginView implements ActionListener{
 		label.setBounds(176, 32, 161, 51);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
+		JLabel label_1 = new JLabel("ÓÃ»§Ãû");
 		label_1.setBounds(90, 103, 54, 15);
 		frame.getContentPane().add(label_1);
 		

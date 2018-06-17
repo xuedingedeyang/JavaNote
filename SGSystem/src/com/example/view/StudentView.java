@@ -97,17 +97,20 @@ public class StudentView implements ActionListener{
 		
 		Object name[]={"课程","代课教师","成绩"};
 		List<STGrade>list = stService.getGrade(Sno);
-		Object[][] items = new Object[list.size()][name.length];
-		for(int i=0;i<list.size();i++){
-			items[i][0] = list.get(i).getCourseName();
-			items[i][1] = list.get(i).getTeacherName();
-			items[i][2] = list.get(i).getGrade();
-			System.out.println(items[i][0].toString()+","+items[i][1].toString()+","+items[i][2].toString());
+		if(list!=null){
+			Object[][] items = new Object[list.size()][name.length];
+			for(int i=0;i<list.size();i++){
+				items[i][0] = list.get(i).getCourseName();
+				items[i][1] = list.get(i).getTeacherName();
+				items[i][2] = list.get(i).getGrade();
+				System.out.println(items[i][0].toString()+","+items[i][1].toString()+","+items[i][2].toString());
+			}
+			table = new JTable(items,name);
+			table.setEnabled(false);
+			
+			scrollPane_1.setViewportView(table);
 		}
-		table = new JTable(items,name);
-		table.setEnabled(false);
 		
-		scrollPane_1.setViewportView(table);
 		
 		JButton chooseCourseBtn = new JButton("\u9009\u8BFE");
 		chooseCourseBtn.setBounds(436, 413, 93, 23);

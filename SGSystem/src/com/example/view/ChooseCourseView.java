@@ -29,6 +29,7 @@ import com.example.util.MyTableModel;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class ChooseCourseView implements ActionListener{
 
@@ -95,6 +96,10 @@ public class ChooseCourseView implements ActionListener{
 		confirmBtn.setBounds(373, 364, 93, 23);
 		confirmBtn.addActionListener(this);
 		frame.getContentPane().add(confirmBtn);
+		
+		JButton backBtn = new JButton("\u8FD4\u56DE");
+		backBtn.setBounds(40, 364, 93, 23);
+		frame.getContentPane().add(backBtn);
 	}
 
 	@Override
@@ -109,6 +114,8 @@ public class ChooseCourseView implements ActionListener{
 		int a = stService.addBatch(sno, tnos);
 		if(a==1){
 			JOptionPane.showMessageDialog(this.frame, "选课成功！");
+			new StudentView(sno).frame.setVisible(true);
+			this.frame.dispose();
 		}else if(a==-1){
 			JOptionPane.showMessageDialog(this.frame, "选课失败，检查是否重复选择了课程!");
 		}else if(a==0){

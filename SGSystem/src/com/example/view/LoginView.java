@@ -10,6 +10,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import com.example.service.LoginService;
+import com.example.service.StudentService;
+import com.example.service.TeacherService;
 
 import javax.swing.JTextPane;
 import javax.swing.JPasswordField;
@@ -29,8 +31,8 @@ public class LoginView implements ActionListener{
 	private JRadioButton teacherRadio;
 	private JTextPane usernameText;
 	private JPasswordField passwordField;
-	private LoginService loginServce;
-
+	private StudentService stuService;
+	private TeacherService teacherService;
 
 	/**
 	 * Create the application.
@@ -43,6 +45,8 @@ public class LoginView implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		stuService = new StudentService();
+		teacherService = new TeacherService();
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 522, 338);
@@ -98,7 +102,6 @@ public class LoginView implements ActionListener{
 		loginBtn.setBounds(308, 261, 93, 23);
 		loginBtn.addActionListener(this);
 		frame.getContentPane().add(loginBtn);
-		loginServce = new LoginService();
 	}
 
 	@Override
@@ -114,15 +117,20 @@ public class LoginView implements ActionListener{
 				System.out.println("管理员");
 				
 			}else if(studentRadio.isSelected()){
-				if(loginServce.studentLogin(username, password)){
+				if(stuService.login(username, password)){
 					System.out.println("登录成功");
 					new StudentView(username).frame.setVisible(true);;
 					this.frame.dispose();
 				}else{
-					System.out.println("登录失败");
+					JOptionPane.showMessageDialog(this.frame, "登录失败，请检查用户名和密码");
 				}
 			}else if(teacherRadio.isSelected()){
-				
+				if(teacherService.login(username, password)){
+					new TeacherView(username).frame.setVisible(true);
+					this.frame.dispose();
+				}else{
+					JOptionPane.showMessageDialog(this.frame, "登录失败，请检查用户名和密码");
+				}
 				System.out.println("教师");
 			}else{
 				JOptionPane.showMessageDialog(this.frame, "请选择身份");

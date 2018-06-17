@@ -15,4 +15,17 @@ public class TeacherService {
 	public List<Teacher> getAllTeacher(){
 		return td.getAllTeacher();
 	}
+	
+	public boolean login(String tno,String password){
+		Teacher t = getTeacherByTno(tno);
+		if(t==null){
+			return false;
+		}
+		if(!t.getTpassword().equals(password)){
+			return false;
+		}
+		return true;
+	}
+	
+	
 }

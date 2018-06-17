@@ -28,8 +28,7 @@ public class TeacherDao extends BaseDao{
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from teacher");
 			list = new ArrayList<>();
-			if(rs!=null){
-				rs.last();
+			if(rs.last()){
 				do{
 					Teacher t = new Teacher();
 					t.setTname(rs.getString("Tname"));
@@ -42,8 +41,7 @@ public class TeacherDao extends BaseDao{
 			for(Teacher t:list){
 				st = conn.createStatement();
 				rs = st.executeQuery("select * from course c,teacher t where t.Cno=c.Cno and t.Tno = "+t.getTno());
-				if(rs!=null){
-					rs.last();
+				if(rs.last()){
 					do{
 						c = new Course();
 						c.setCno(rs.getString("Cno"));
@@ -79,12 +77,12 @@ public class TeacherDao extends BaseDao{
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from teacher where Tno = "+tno);
 			
-			if(rs!=null){
+			if(rs.first()){
 				t = new Teacher();
-				rs.first();
 				t.setTno(rs.getString("Tno"));
 				t.setTname(rs.getString("Tname"));
 				t.setTSex(rs.getString("Tsex"));
+				t.setTpassword(rs.getString("Tpassword"));
 				t.setCourse(cd.getCourseByCno(rs.getString("Cno")));
 			}
 		} catch (SQLException e) {

@@ -17,5 +17,16 @@ public class StudentService {
 		return sd.getStudentBySno(sno);
 	}
 	
+	public boolean login(String sno,String password){
+		Student stu = getStudentBySno(sno);
+		if(stu==null){
+			return false;
+		}
+		if(!stu.getSpassword().equals(password)){
+			return false;
+		}
+		return true;
+	}
+	
 	
 }

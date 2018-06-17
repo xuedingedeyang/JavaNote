@@ -13,6 +13,9 @@ import com.example.bean.Student;
 public class StudentDao extends BaseDao{
 	Connection conn;
 	public Student getStudentBySno(String sno){
+		if(sno==null){
+			return null;
+		}
 		try {
 			conn = getConnection();
 			System.out.println("dao"+sno);
@@ -20,9 +23,8 @@ public class StudentDao extends BaseDao{
 			ps.setString(1, sno);
 			ResultSet rs = ps.executeQuery();
 			Student st = null;
-			if(rs!=null){
+			if(rs.first()){
 				st = new Student();
-				rs.first();
 				st.setSname(rs.getString("Sname"));
 				st.setSage(rs.getString("Sage"));
 				st.setSsex(rs.getString("Ssex"));
@@ -49,11 +51,10 @@ public class StudentDao extends BaseDao{
 		conn = getConnection();
 		List<STGrade> list = null;
 		try {
-			PreparedStatement ps = conn.prepareStatement("select course.Cname,teacher.Tname,ST.Grade from student,ST,teacher,course where student.Sno=ST.Sno and St.Tno = teacher.Tno and teacher.Cno=course.Cno and student.Sno='?'");
+			PreparedStatement ps = conn.prepareStatement("select course.Cname,teacher.Tname,ST.Grade from student,ST,teacher,course where student.Sno=ST.Sno and St.Tno = teacher.Tno and teacher.Cno=course.Cno and student.Sno=?");
 			ps.setString(1, sno);
 			ResultSet rs = ps.executeQuery();
-			if(rs!=null){
-				rs.last();
+			if(rs.last()){
 				list = new ArrayList<>();
 				do{
 					STGrade sg = new STGrade();
@@ -67,6 +68,13 @@ public class StudentDao extends BaseDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

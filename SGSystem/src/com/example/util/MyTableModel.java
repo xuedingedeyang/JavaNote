@@ -8,6 +8,12 @@ import com.example.bean.Teacher;
 
 public class MyTableModel extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3790197921155492818L;
+	
+	
 	private List<Teacher> teachers;
 	Object[] names = {"课程","代课教师","学时","学分","操作"};
 	Object[][] items=null;

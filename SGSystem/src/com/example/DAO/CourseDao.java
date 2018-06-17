@@ -19,8 +19,7 @@ public class CourseDao extends BaseDao{
 		try {
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from course where Cno="+cno);
-			if(rs!=null){
-				rs.first();
+			if(rs.first()){
 				c=new Course();
 				c.setCno(rs.getString("Cno"));
 				c.setCname(rs.getString("Cname"));
@@ -41,8 +40,7 @@ public class CourseDao extends BaseDao{
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from course");
-			if(rs!=null){
-				rs.last();
+			if(rs.last()){
 				do{
 					Course c = new Course();
 					c.setCno(rs.getString("Cno"));
@@ -56,8 +54,7 @@ public class CourseDao extends BaseDao{
 			for(Course c:list){
 				st = conn.createStatement();
 				rs = st.executeQuery("select t,Tno,Tname, from teacher t,course c where t.Cno = "+c.getCno());
-				if(rs!=null){
-					rs.last();
+				if(rs.last()){
 					do{
 						Teacher t = new Teacher();
 						t.setTname(rs.getString("Tname"));

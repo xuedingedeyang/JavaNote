@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.example.bean.ST;
 import com.example.bean.Student;
+import com.example.bean.Teacher;
 import com.example.service.STService;
 import com.example.service.StudentService;
 import com.example.service.TeacherService;
@@ -56,10 +57,10 @@ public class TeacherView implements ActionListener{
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("宋体", Font.PLAIN, 11));
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 591, 447);
+		frame.setBounds(100, 100, 621, 456);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setLocationRelativeTo(null);
 		JLabel l1 = new JLabel("姓名");
 		l1.setBounds(10, 34, 54, 15);
 		frame.getContentPane().add(l1);
@@ -96,12 +97,12 @@ public class TeacherView implements ActionListener{
 		
 		JLabel courseLb = new JLabel();
 		courseLb.setFont(new Font("黑体", Font.BOLD, 12));
-		courseLb.setBounds(487, 34, 54, 15);
+		courseLb.setBounds(494, 34, 93, 15);
 		courseLb.setText(teacherService.getTeacherByTno(tno).getCourse().getCname());
 		frame.getContentPane().add(courseLb);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 129, 536, 229);
+		scrollPane.setBounds(28, 129, 559, 229);
 		frame.getContentPane().add(scrollPane);
 		
 		Object[] columns = {"学号","姓名","性别","系别","成绩"};//列名
@@ -118,7 +119,7 @@ public class TeacherView implements ActionListener{
 				items[i][0] = stu.getSno();
 				items[i][1] = stu.getSname();
 				items[i][2] = stu.getSsex();
-				items[i][3] = stu.getSsex();
+				items[i][3] = stu.getStel();
 				items[i][4] = stList.get(i).getGrade();
 			}
 			
@@ -153,25 +154,46 @@ public class TeacherView implements ActionListener{
 		JButton updateBtn = new JButton("确定");
 		updateBtn.setBounds(448, 385, 93, 23);
 		frame.getContentPane().add(updateBtn);
+		
+		JButton backBtn = new JButton("返回");
+		backBtn.addActionListener(this);
+		backBtn.setBounds(22, 385, 93, 23);
+		frame.getContentPane().add(backBtn);
+		
+		JButton modifyPass = new JButton("修改密码");
+		modifyPass.setBounds(494, 59, 93, 23);
+		frame.getContentPane().add(modifyPass);
 		updateBtn.addActionListener(this);
+		modifyPass.addActionListener(this);
+		backBtn.addActionListener(this);
 		
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//若没有学生选择老师的课程，stList为空
-		if(stList!=null){
-			for(int i=0;i<stList.size();i++){
-				stList.get(i).setGrade((float)table.getValueAt(i, 4));
+		if(e.getActionCommand().equals("确定")){
+			//若没有学生选择老师的课程，stList为空
+			if(stList!=null){
+				for(int i=0;i<stList.size();i++){
+					stList.get(i).setGrade((float)table.getValueAt(i, 4));
+				}
+				System.out.println(stList);
+				if(sts.update(stList)){
+					JOptionPane.showMessageDialog(this.frame, "修改成功");
+				}else{
+					JOptionPane.showMessageDialog(this.frame, "修改失败");
+				}
 			}
-			System.out.println(stList);
-			if(sts.update(stList)){
-				JOptionPane.showMessageDialog(this.frame, "修改成功");
-			}else{
-				JOptionPane.showMessageDialog(this.frame, "修改失败");
-			}
+		}else if(e.getActionCommand().equals("返回")){
+			new LoginView().frame.setVisible(true);
+			this.frame.dispose();
+		}else if(e.getActionCommand().equals("修改密码")){
+			Teacher teacher = teacherService.getTeacherByTno(this.tno);
+			new ModifyPasswordView(null, teacher).frame.setVisible(true);
+			this.frame.dispose();
 		}
+		
 	}
 
 }

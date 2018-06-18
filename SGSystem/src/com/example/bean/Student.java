@@ -8,6 +8,32 @@ public class Student {
 	private String Stel;
 	private String Spassword;
 	
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Student(String sno, String sname, String ssex, String sage, String stel, String spassword) {
+		super();
+		this.Sno = sno;
+		this.Sname = sname;
+		this.Ssex = ssex;
+		this.Sage = sage;
+		this.Stel = stel;
+		this.Spassword = spassword;
+	}
+
+
+	public Student(String sno, String sname, String ssex, String sage, String sdept) {
+		this.Sno = sno;
+		this.Sname = sname;
+		this.Ssex = ssex;
+		this.Sage = sage;
+		this.Stel = sdept;
+	}
+
+
+
 	public String getSno() {
 		return Sno;
 	}

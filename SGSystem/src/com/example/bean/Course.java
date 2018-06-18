@@ -13,6 +13,17 @@ public class Course {
 	
 	
 	
+	public Course() {
+		
+	}
+	public Course(String cno, String cname, String ctime, String credit) {
+		this.Cno=cno;
+		this.Cname = cname;
+		this.Ctime = ctime;
+		this.Ccredit = credit;
+	}
+	
+
 	public List<Teacher> getTeachers() {
 		return teachers;
 	}

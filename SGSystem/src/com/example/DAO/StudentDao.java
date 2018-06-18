@@ -79,4 +79,25 @@ public class StudentDao extends BaseDao{
 		return null;
 	}
 	
+	public boolean updateStudent(Student stu){
+		conn = getConnection();
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement("update student set Sname=?,Ssex=?,Sage=?,Stel=?,Spassword=? where Sno=?");
+			ps.setString(1, stu.getSname());
+			ps.setString(2, stu.getSsex());
+			ps.setString(3, stu.getSage());
+			ps.setString(4, stu.getStel());
+			ps.setString(5, stu.getSpassword());
+			ps.setString(6, stu.getSno());
+			if(ps.executeUpdate()>0){
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

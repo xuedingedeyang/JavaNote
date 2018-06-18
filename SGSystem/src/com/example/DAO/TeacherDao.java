@@ -92,4 +92,32 @@ public class TeacherDao extends BaseDao{
 		
 		return t;
 	}
+	
+	public boolean updateTeacher(Teacher t){
+		conn = getConnection();
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("update teacher set Tname=?,Tsex=?,Tpassword=?,Cno=? where Tno=?");
+			ps.setString(1, t.getTname());
+			ps.setString(2, t.getTSex());
+			ps.setString(3, t.getTpassword());
+			ps.setString(4, t.getCourse().getCno());
+			ps.setString(5, t.getTno());
+			if(ps.executeUpdate()>0){
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 }

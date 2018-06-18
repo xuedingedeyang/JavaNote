@@ -17,6 +17,16 @@ public class StudentService {
 		return sd.getStudentBySno(sno);
 	}
 	
+	public boolean updateStudent(Student stu){
+		if(stu==null){
+			return false;
+		}
+		if(sd.updateStudent(stu)){
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean login(String sno,String password){
 		Student stu = getStudentBySno(sno);
 		if(stu==null){

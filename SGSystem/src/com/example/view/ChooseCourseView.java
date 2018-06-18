@@ -62,7 +62,7 @@ public class ChooseCourseView implements ActionListener{
 		frame.setBounds(100, 100, 582, 426);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		this.frame.setLocationRelativeTo(null);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(32, 27, 513, 308);
 		scrollPane.setVisible(true);
@@ -73,15 +73,7 @@ public class ChooseCourseView implements ActionListener{
 			JOptionPane.showMessageDialog(this.frame, "查不到课程");
 		}
 		
-//		Object[] names = {"课程","代课教师","学时","学分","操作"};
-//		Object[][] items = new Object[list.size()][names.length];
-//		for(int i=0;i<list.size();i++){
-//			items[i][0] = list.get(i).getCourse().getCname();
-//			items[i][1] = list.get(i).getTname();
-//			items[i][2] = list.get(i).getCourse().getCtime();
-//			items[i][3] = list.get(i).getCourse().getCcredit();
-//			System.out.println(items[i][0]+","+items[i][1]);
-//		}
+
 		model = new MyTableModel(teachers);
 		table = new JTable(model);
 		table.setFillsViewportHeight(true);
@@ -97,30 +89,37 @@ public class ChooseCourseView implements ActionListener{
 		confirmBtn.addActionListener(this);
 		frame.getContentPane().add(confirmBtn);
 		
-		JButton backBtn = new JButton("\u8FD4\u56DE");
+		JButton backBtn = new JButton("返回");
 		backBtn.setBounds(40, 364, 93, 23);
 		frame.getContentPane().add(backBtn);
+		backBtn.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		List<String> tnos = new ArrayList<>();
-		for(int i=0;i<model.getRowCount();i++){
-			System.out.println( model.getValueAt(i, model.getColumnCount()-1));
-			if((boolean) model.getValueAt(i, model.getColumnCount()-1)){
-				tnos.add(teachers.get(i).getTno());
+		if(e.getActionCommand().equals("确认")){
+			List<String> tnos = new ArrayList<>();
+			for(int i=0;i<model.getRowCount();i++){
+				System.out.println( model.getValueAt(i, model.getColumnCount()-1));
+				if((boolean) model.getValueAt(i, model.getColumnCount()-1)){
+					tnos.add(teachers.get(i).getTno());
+				}
 			}
-		}
-		int a = stService.addBatch(sno, tnos);
-		if(a==1){
-			JOptionPane.showMessageDialog(this.frame, "选课成功！");
+			int a = stService.addBatch(sno, tnos);
+			if(a==1){
+				JOptionPane.showMessageDialog(this.frame, "选课成功！");
+				new StudentView(sno).frame.setVisible(true);
+				this.frame.dispose();
+			}else if(a==-1){
+				JOptionPane.showMessageDialog(this.frame, "选课失败，检查是否重复选择了课程!");
+			}else if(a==0){
+				JOptionPane.showMessageDialog(this.frame, "请选择课程!");
+			}
+		}else if(e.getActionCommand().equals("返回")){
 			new StudentView(sno).frame.setVisible(true);
 			this.frame.dispose();
-		}else if(a==-1){
-			JOptionPane.showMessageDialog(this.frame, "选课失败，检查是否重复选择了课程!");
-		}else if(a==0){
-			JOptionPane.showMessageDialog(this.frame, "请选择课程!");
 		}
+		
 		
 	}
 }

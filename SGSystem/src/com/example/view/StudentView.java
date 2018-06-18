@@ -62,7 +62,7 @@ public class StudentView implements ActionListener{
 		nameLb.setBounds(98, 62, 54, 15);
 		frame.getContentPane().add(nameLb);
 		
-		JLabel label_1 = new JLabel("\u5B66\u53F7\uFF1A");
+		JLabel label_1 = new JLabel("学号");
 		label_1.setBounds(199, 62, 40, 15);
 		frame.getContentPane().add(label_1);
 		
@@ -71,7 +71,7 @@ public class StudentView implements ActionListener{
 		snoLb.setBounds(255, 62, 102, 15);
 		frame.getContentPane().add(snoLb);
 		
-		JLabel label_3 = new JLabel("\u7CFB\u522B\uFF1A");
+		JLabel label_3 = new JLabel("系别");
 		label_3.setBounds(377, 62, 40, 15);
 		frame.getContentPane().add(label_3);
 		
@@ -120,6 +120,11 @@ public class StudentView implements ActionListener{
 		backBtn.addActionListener(this);
 		backBtn.setBounds(48, 413, 93, 23);
 		frame.getContentPane().add(backBtn);
+		
+		JButton modifyInfo = new JButton("修改密码");
+		modifyInfo.addActionListener(this);
+		modifyInfo.setBounds(449, 29, 93, 23);
+		frame.getContentPane().add(modifyInfo);
 		chooseCourseBtn.addActionListener(this);
 	}
 
@@ -130,6 +135,10 @@ public class StudentView implements ActionListener{
 			this.frame.dispose();
 		}else if(e.getActionCommand().equals("选课")){
 			new ChooseCourseView(this.Sno).frame.setVisible(true);
+			this.frame.dispose();
+		}else if(e.getActionCommand().equals("修改密码")){
+			Student stu = stService.getStudentBySno(this.Sno);
+			new ModifyPasswordView(stu, null).frame.setVisible(true);
 			this.frame.dispose();
 		}
 	}

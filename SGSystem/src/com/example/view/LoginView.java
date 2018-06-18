@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import com.Levide.Administor.AllFunction;
 import com.example.service.LoginService;
 import com.example.service.StudentService;
 import com.example.service.TeacherService;
@@ -115,7 +116,12 @@ public class LoginView implements ActionListener{
 			if(adminRadio.isSelected()){
 				//管理员登录
 				System.out.println("管理员");
-				
+				if(username.equals("admin")&&password.equals("admin")){
+					new AllFunction().frame.setVisible(true);
+					this.frame.dispose();
+				}else{
+					JOptionPane.showMessageDialog(this.frame, "登录失败，请检查用户名和密码");
+				}
 			}else if(studentRadio.isSelected()){
 				if(stuService.login(username, password)){
 					System.out.println("登录成功");

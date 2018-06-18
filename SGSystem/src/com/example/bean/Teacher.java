@@ -11,6 +11,26 @@ public class Teacher {
 	
 	
 	
+	
+	public Teacher() {
+		
+	}
+	
+	
+	public Teacher(String tno, String tname, String tSex, String tpassword, String tcno) {
+		super();
+		this.Tno = tno;
+		this.Tname = tname;
+		this.TSex = tSex;
+		this.Tpassword = tpassword;
+		this.course = new Course();
+		this.course.setCno(tcno);
+	}
+
+
+	
+
+
 	public Course getCourse() {
 		return course;
 	}

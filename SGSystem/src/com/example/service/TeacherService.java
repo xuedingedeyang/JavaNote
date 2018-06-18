@@ -12,6 +12,16 @@ public class TeacherService {
 		return td.getTeacherByTno(tno);
 	}
 	
+	public boolean updateTeacher(Teacher t){
+		if(t==null){
+			return false;
+		}
+		if(td.updateTeacher(t)){
+			return true;
+		}
+		return false;
+	}
+	
 	public List<Teacher> getAllTeacher(){
 		return td.getAllTeacher();
 	}

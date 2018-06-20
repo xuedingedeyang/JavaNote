@@ -140,7 +140,11 @@ public class ModifyPasswordView implements ActionListener {
 				}
 			}
 		}else if(e.getActionCommand().equals("ÍË³ö")){
-			new LoginView().frame.setVisible(true);
+			if(stu!=null){
+				new StudentView(stu.getSno()).frame.setVisible(true);
+			}else{
+				new TeacherView(teacher.getTno()).frame.setVisible(true);
+			}
 			this.frame.dispose();
 		}
 		

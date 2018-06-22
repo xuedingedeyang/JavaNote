@@ -43,13 +43,13 @@ public class AllFunction implements ActionListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("æ¬¢è¿æ‚¨ï¼Œè¯·é€‰æ‹©åŠŸèƒ½ï¼š");
+		frame = new JFrame("»¶Ó­Äú£¬ÇëÑ¡Ôñ¹¦ÄÜ£º");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 		
-		JButton btnNewButton = new JButton("å¢åŠ ä¿¡æ¯");
+		JButton btnNewButton = new JButton("Ôö¼ÓĞÅÏ¢");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -61,7 +61,7 @@ public class AllFunction implements ActionListener {
 		btnNewButton.setBounds(53, 41, 93, 23);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("æŸ¥è¯¢æ›´æ”¹ä¿¡æ¯");
+		JButton btnNewButton_1 = new JButton("²éÑ¯¸ü¸ÄĞÅÏ¢");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -72,7 +72,7 @@ public class AllFunction implements ActionListener {
 		btnNewButton_1.setBounds(166, 41, 121, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton button_2 = new JButton("å¢åŠ ä¿¡æ¯");
+		JButton button_2 = new JButton("Ôö¼ÓĞÅÏ¢");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -83,7 +83,7 @@ public class AllFunction implements ActionListener {
 		button_2.setBounds(53, 114, 93, 23);
 		frame.getContentPane().add(button_2);
 		
-		JButton button_5 = new JButton("æŸ¥è¯¢æ›´æ”¹ä¿¡æ¯");
+		JButton button_5 = new JButton("²éÑ¯¸ü¸ÄĞÅÏ¢");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -94,7 +94,7 @@ public class AllFunction implements ActionListener {
 		button_5.setBounds(166, 114, 121, 23);
 		frame.getContentPane().add(button_5);
 		
-		JButton button_6 = new JButton("å¢åŠ ä¿¡æ¯");
+		JButton button_6 = new JButton("Ôö¼ÓĞÅÏ¢");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -105,7 +105,7 @@ public class AllFunction implements ActionListener {
 		button_6.setBounds(53, 192, 93, 23);
 		frame.getContentPane().add(button_6);
 		
-		JButton button_9 = new JButton("æŸ¥è¯¢æ›´æ”¹ä¿¡æ¯");
+		JButton button_9 = new JButton("²éÑ¯¸ü¸ÄĞÅÏ¢");
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -116,22 +116,22 @@ public class AllFunction implements ActionListener {
 		button_9.setBounds(166, 192, 121, 23);
 		frame.getContentPane().add(button_9);
 		
-		JLabel label = new JLabel("å­¦ç”Ÿä¿¡æ¯ç®¡ç†");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 16));
+		JLabel label = new JLabel("Ñ§ÉúĞÅÏ¢¹ÜÀí");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 16));
 		label.setBounds(26, 10, 114, 21);
 		frame.getContentPane().add(label);
 		
-		JLabel label_3 = new JLabel("è€å¸ˆä¿¡æ¯ç®¡ç†");
-		label_3.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 16));
+		JLabel label_3 = new JLabel("ÀÏÊ¦ĞÅÏ¢¹ÜÀí");
+		label_3.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 16));
 		label_3.setBounds(26, 83, 114, 21);
 		frame.getContentPane().add(label_3);
 		
-		JLabel label_1 = new JLabel("è¯¾ç¨‹ä¿¡æ¯ç®¡ç†");
-		label_1.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 16));
+		JLabel label_1 = new JLabel("¿Î³ÌĞÅÏ¢¹ÜÀí");
+		label_1.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 16));
 		label_1.setBounds(26, 161, 114, 21);
 		frame.getContentPane().add(label_1);
 		
-		JButton button = new JButton("åˆ é™¤ä¿¡æ¯");
+		JButton button = new JButton("É¾³ıĞÅÏ¢");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -142,7 +142,7 @@ public class AllFunction implements ActionListener {
 		button.setBounds(303, 41, 93, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("åˆ é™¤ä¿¡æ¯");
+		JButton button_1 = new JButton("É¾³ıĞÅÏ¢");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -153,7 +153,7 @@ public class AllFunction implements ActionListener {
 		button_1.setBounds(303, 114, 93, 23);
 		frame.getContentPane().add(button_1);
 		
-		JButton button_3 = new JButton("åˆ é™¤ä¿¡æ¯");
+		JButton button_3 = new JButton("É¾³ıĞÅÏ¢");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -164,7 +164,7 @@ public class AllFunction implements ActionListener {
 		button_3.setBounds(303, 192, 93, 23);
 		frame.getContentPane().add(button_3);
 		
-		JButton backBtn = new JButton("è¿”å›");
+		JButton backBtn = new JButton("·µ»Ø");
 		backBtn.addActionListener(this);
 		backBtn.setBounds(303, 225, 93, 23);
 		frame.getContentPane().add(backBtn);
@@ -172,7 +172,7 @@ public class AllFunction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("è¿”å›")){
+		if(e.getActionCommand().equals("·µ»Ø")){
 			new LoginView().frame.setVisible(true);
 			this.frame.dispose();
 		}

@@ -62,33 +62,33 @@ public class InsertS implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("æ·»åŠ å­¦ç”ŸåŸºæœ¬ä¿¡æ¯");
+		frame.setTitle("Ìí¼ÓÑ§Éú»ù±¾ĞÅÏ¢");
 		frame.setBounds(100, 100, 465, 422);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-		JLabel label = new JLabel("æ·»åŠ å­¦ç”ŸåŸºæœ¬ä¿¡æ¯");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 30));
+		JLabel label = new JLabel("Ìí¼ÓÑ§Éú»ù±¾ĞÅÏ¢");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 30));
 		label.setBounds(83, 10, 264, 59);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel(" å­¦  å·ï¼š");
+		JLabel label_1 = new JLabel(" Ñ§  ºÅ£º");
 		label_1.setBounds(68, 81, 54, 15);
 		frame.getContentPane().add(label_1);
 		
-		JLabel label_2 = new JLabel(" å§“  åï¼š");
+		JLabel label_2 = new JLabel(" ĞÕ  Ãû£º");
 		label_2.setBounds(68, 121, 54, 15);
 		frame.getContentPane().add(label_2);
 		
-		JLabel label_3 = new JLabel(" æ€§  åˆ«ï¼š");
+		JLabel label_3 = new JLabel(" ĞÔ  ±ğ£º");
 		label_3.setBounds(68, 164, 54, 15);
 		frame.getContentPane().add(label_3);
 		
-		JLabel label_4 = new JLabel(" ç³»  åˆ«ï¼š");
+		JLabel label_4 = new JLabel(" Ïµ  ±ğ£º");
 		label_4.setBounds(68, 197, 54, 15);
 		frame.getContentPane().add(label_4);
 		
-		JLabel label_5 = new JLabel(" å¹´  é¾„ï¼š");
+		JLabel label_5 = new JLabel(" Äê  Áä£º");
 		label_5.setBounds(68, 240, 54, 15);
 		frame.getContentPane().add(label_5);
 		
@@ -109,28 +109,28 @@ public class InsertS implements ActionListener {
 		frame.getContentPane().add(textArea3);
 		
 		ButtonGroup buttonGroup = new ButtonGroup();
-		radioButton = new JRadioButton("ç”·");
+		radioButton = new JRadioButton("ÄĞ");
 		radioButton.setBounds(165, 160, 54, 23);
 		frame.getContentPane().add(radioButton);
 		buttonGroup.add(radioButton);
 		
-		radioButton1 = new JRadioButton("å¥³");
+		radioButton1 = new JRadioButton("Å®");
 		radioButton1.setBounds(254, 160, 54, 23);
 		frame.getContentPane().add(radioButton1);
 		buttonGroup.add(radioButton1);
 		
-		JButton button = new JButton("æäº¤");
+		JButton button = new JButton("Ìá½»");
 		button.addActionListener(this);
 		
 		button.setBounds(132, 315, 93, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("é€€å‡º");
+		JButton button_1 = new JButton("ÍË³ö");
 		button_1.addActionListener(this);
 		button_1.setBounds(254, 315, 93, 23);
 		frame.getContentPane().add(button_1);
 		
-		JLabel label_6 = new JLabel(" å¯†  ç ï¼š");
+		JLabel label_6 = new JLabel(" ÃÜ  Âë£º");
 		label_6.setBounds(68, 282, 54, 15);
 		frame.getContentPane().add(label_6);
 		
@@ -143,10 +143,10 @@ public class InsertS implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("é€€å‡º")){
+		if(e.getActionCommand().equals("ÍË³ö")){
 			new AllFunction().frame.setVisible(true);
 			this.frame.dispose();
-		}else if(e.getActionCommand().equals("æäº¤")){
+		}else if(e.getActionCommand().equals("Ìá½»")){
 			String Sno = textArea.getText();
 			String Sname = textArea1.getText();
 			String Ssex = "";
@@ -178,10 +178,11 @@ public class InsertS implements ActionListener {
 				ps.setString(6, student.getSpassword());
 				ps.executeUpdate();
 				conn.commit();
+				JOptionPane.showMessageDialog(frame,"±£´æ³É¹¦");
 			} catch (SQLException e1) {
 				try {
 					conn.rollback();
-					JOptionPane.showMessageDialog(null, "è¯·æ£€æŸ¥æ‰€è¾“å…¥çš„æ•°æ®", "æ’å…¥é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Çë¼ì²éËùÊäÈëµÄÊı¾İ", "²åÈë´íÎó", JOptionPane.ERROR_MESSAGE);
 				} catch (SQLException e2) {
 					e2.printStackTrace();
 				}

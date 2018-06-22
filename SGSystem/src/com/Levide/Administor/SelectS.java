@@ -62,17 +62,17 @@ public class SelectS implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("æŸ¥è¯¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯");
+		frame.setTitle("²éÑ¯Ñ§Éú»ù±¾ĞÅÏ¢");
 		frame.setBounds(100, 100, 452, 436);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-		JLabel label = new JLabel("æŸ¥è¯¢å­¦ç”ŸåŸºæœ¬ä¿¡æ¯");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 30));
+		JLabel label = new JLabel("²éÑ¯Ñ§Éú»ù±¾ĞÅÏ¢");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 30));
 		label.setBounds(91, 10, 256, 65);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel(" å­¦  å·ï¼š");
+		JLabel label_1 = new JLabel(" Ñ§  ºÅ£º");
 		label_1.setBounds(40, 89, 54, 15);
 		frame.getContentPane().add(label_1);
 		
@@ -84,7 +84,7 @@ public class SelectS implements ActionListener{
 		scpDemo.setBounds(22, 136, 393, 192);
 		frame.getContentPane().add(scpDemo);
 		
-		JButton button = new JButton("æŸ¥è¯¢");
+		JButton button = new JButton("²éÑ¯");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -131,26 +131,26 @@ public class SelectS implements ActionListener{
 					stus.add(stu);
 					count++;
 					}
-					String[] title = {"å­¦å·","å§“å","æ€§åˆ«","å¹´é¾„","ç³»åˆ«"};
+					String[] title = {"Ñ§ºÅ","ĞÕÃû","ĞÔ±ğ","ÄêÁä","Ïµ±ğ"};
 				
 					table = new JTable(info,title);
      				table.getTableHeader(); 				
      				scpDemo.add(table);
 				} catch (SQLException sqle) {
 					sqle.printStackTrace();
-					JOptionPane.showMessageDialog(null, "è¯·è¾“å…¥æ­£ç¡®çš„æ•°æ®", "æŸ¥è¯¢é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ÇëÊäÈëÕıÈ·µÄÊı¾İ", "²éÑ¯´íÎó", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});	
 		button.setBounds(295, 85, 64, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("é€€å‡º");
+		JButton button_1 = new JButton("ÍË³ö");
 		button_1.addActionListener(this);
 		button_1.setBounds(283, 347, 64, 23);
 		frame.getContentPane().add(button_1);
 		
-		JButton button_3 = new JButton("ä¿å­˜");
+		JButton button_3 = new JButton("±£´æ");
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -184,10 +184,11 @@ public class SelectS implements ActionListener{
 						ps.setString(4, stu.getStel());
 						ps.executeUpdate();
 						conn.commit();
+						JOptionPane.showMessageDialog(frame,"±£´æ³É¹¦");
 					} catch (SQLException e1) {
 						try {
 							conn.rollback();
-							JOptionPane.showMessageDialog(null, "è¯·æ£€æŸ¥æ‰€è¾“å…¥çš„æ•°æ®", "æ’å…¥é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Çë¼ì²éËùÊäÈëµÄÊı¾İ", "²åÈë´íÎó", JOptionPane.ERROR_MESSAGE);
 						} catch (SQLException e2) {
 							e2.printStackTrace();
 						}
@@ -202,7 +203,7 @@ public class SelectS implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("é€€å‡º")){
+		if(e.getActionCommand().equals("ÍË³ö")){
 			new AllFunction().frame.setVisible(true);
 			this.frame.dispose();
 		}

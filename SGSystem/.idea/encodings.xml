@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/AllFunction.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/DeleteC.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/DeleteS.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/DeleteT.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/InsertC.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/InsertS.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/InsertT.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/SelectC.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/SelectS.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/Levide/Administor/SelectT.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/service/STService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/view/ChooseCourseView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/view/LoginView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/view/ModifyPasswordView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/view/StudentView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/example/view/TeacherView.java" charset="GBK" />
+  </component>
+</project>

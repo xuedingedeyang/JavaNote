@@ -96,7 +96,7 @@ public class StudentView implements ActionListener{
 		
 		
 		Object name[]={"课程","代课教师","成绩"};
-		List<STGrade>list = stService.getGrade(Sno);
+		List<STGrade> list = stService.getGrade(Sno);
 		if(list!=null){
 			Object[][] items = new Object[list.size()][name.length];
 			for(int i=0;i<list.size();i++){

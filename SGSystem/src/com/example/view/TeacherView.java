@@ -130,7 +130,7 @@ public class TeacherView implements ActionListener{
 				@Override
 				public boolean isCellEditable(int row, int column) {
 					// TODO Auto-generated method stub
-					return column==4 ? true : false;
+					return column == 4;
 				}
 				
 				@Override

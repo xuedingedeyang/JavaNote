@@ -62,17 +62,17 @@ public class SelectC implements ActionListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("æŸ¥è¯¢è¯¾ç¨‹åŸºæœ¬ä¿¡æ¯");
+		frame.setTitle("²éÑ¯¿Î³Ì»ù±¾ĞÅÏ¢");
 		frame.setBounds(100, 100, 452, 436);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-		JLabel label = new JLabel("æŸ¥è¯¢è¯¾ç¨‹åŸºæœ¬ä¿¡æ¯");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 30));
+		JLabel label = new JLabel("²éÑ¯¿Î³Ì»ù±¾ĞÅÏ¢");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 30));
 		label.setBounds(91, 10, 256, 65);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel(" è¯¾ç¨‹å·ï¼š");
+		JLabel label_1 = new JLabel(" ¿Î³ÌºÅ£º");
 		label_1.setBounds(40, 85, 61, 19);
 		frame.getContentPane().add(label_1);
 		
@@ -84,7 +84,7 @@ public class SelectC implements ActionListener{
 		scpDemo.setBounds(22, 136, 393, 192);
 		frame.getContentPane().add(scpDemo);
 		
-		JButton button = new JButton("æŸ¥è¯¢");
+		JButton button = new JButton("²éÑ¯");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -128,26 +128,26 @@ public class SelectC implements ActionListener{
 					cours.add(cour);
 					count++;
 					}
-					String[] title = {"è¯¾ç¨‹å·","è¯¾ç¨‹å","è¯¾æ—¶","å­¦åˆ†"};
+					String[] title = {"¿Î³ÌºÅ","¿Î³ÌÃû","¿ÎÊ±","Ñ§·Ö"};
 				
 					table = new JTable(info,title);
      				table.getTableHeader(); 				
      				scpDemo.add(table);
 				} catch (SQLException sqle) {
 					sqle.printStackTrace();
-					JOptionPane.showMessageDialog(null, "è¯·è¾“å…¥æ­£ç¡®çš„æ•°æ®", "æŸ¥è¯¢é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ÇëÊäÈëÕıÈ·µÄÊı¾İ", "²éÑ¯´íÎó", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});	
 		button.setBounds(295, 85, 64, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("é€€å‡º");
+		JButton button_1 = new JButton("ÍË³ö");
 		button_1.addActionListener(this);
 		button_1.setBounds(283, 347, 64, 23);
 		frame.getContentPane().add(button_1);
 		
-		JButton button_3 = new JButton("ä¿å­˜");
+		JButton button_3 = new JButton("±£´æ");
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -171,7 +171,7 @@ public class SelectC implements ActionListener{
 				for(Course cour:cours) {
 					try {
 						PreparedStatement ps = conn.prepareStatement("update course\r\n" + 
-								"set Cname = ?,Ctime = ?,Credit = ?\r\n" + 
+								"set Cname = ?,Ctime = ?,Ccredit = ?\r\n" +
 								"where Cno = ?");				
 						ps.setString(4, cour.getCno());
 						ps.setString(1, cour.getCname());
@@ -182,13 +182,14 @@ public class SelectC implements ActionListener{
 					} catch (SQLException e1) {
 						try {
 							conn.rollback();
-							JOptionPane.showMessageDialog(null, "è¯·æ£€æŸ¥æ‰€è¾“å…¥çš„æ•°æ®", "æ›´æ–°é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Çë¼ì²éËùÊäÈëµÄÊı¾İ", "¸üĞÂ´íÎó", JOptionPane.ERROR_MESSAGE);
 						} catch (SQLException e2) {
 							e2.printStackTrace();
 						}
 						e1.printStackTrace();
 					}
 				}
+				JOptionPane.showMessageDialog(frame,"±£´æ³É¹¦");
 			}
 		});
 		button_3.setBounds(106, 347, 93, 23);
@@ -197,7 +198,7 @@ public class SelectC implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("é€€å‡º")){
+		if(e.getActionCommand().equals("ÍË³ö")){
 			new AllFunction().frame.setVisible(true);
 			this.frame.dispose();
 		}

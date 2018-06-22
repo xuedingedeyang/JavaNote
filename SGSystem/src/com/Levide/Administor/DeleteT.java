@@ -47,18 +47,18 @@ public class DeleteT implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("åˆ é™¤æŒ‡å®šè€å¸ˆä¿¡æ¯");
+		frame.setTitle("É¾³ıÖ¸¶¨ÀÏÊ¦ĞÅÏ¢");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel label = new JLabel("åˆ é™¤æŒ‡å®šè€å¸ˆä¿¡æ¯");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 30));
+		frame.setLocationRelativeTo(null);
+		JLabel label = new JLabel("É¾³ıÖ¸¶¨ÀÏÊ¦ĞÅÏ¢");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 30));
 		label.setBounds(71, 10, 272, 44);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel("è¯·è¾“å…¥æ•™å¸ˆå·ï¼š");
-		label_1.setFont(new Font("åæ–‡æ¥·ä½“", Font.PLAIN, 18));
+		JLabel label_1 = new JLabel("ÇëÊäÈë½ÌÊ¦ºÅ£º");
+		label_1.setFont(new Font("»ªÎÄ¿¬Ìå", Font.PLAIN, 18));
 		label_1.setBounds(57, 87, 126, 23);
 		frame.getContentPane().add(label_1);
 		
@@ -66,7 +66,7 @@ public class DeleteT implements ActionListener {
 		textArea.setBounds(179, 88, 164, 22);
 		frame.getContentPane().add(textArea);
 		
-		JButton button = new JButton("åˆ é™¤");
+		JButton button = new JButton("É¾³ı");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String Tno = textArea.getText();
@@ -84,10 +84,11 @@ public class DeleteT implements ActionListener {
 					ps.setString(1, Tno);
 					ps.executeUpdate();
 					conn.commit();
+					JOptionPane.showMessageDialog(frame,"±£´æ³É¹¦");
 				} catch (SQLException e1) {
 					try {
 						conn.rollback();
-						JOptionPane.showMessageDialog(null, "è¯·æ£€æŸ¥æ‰€è¾“å…¥çš„æ•°æ®", "åˆ é™¤é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Çë¼ì²éËùÊäÈëµÄÊı¾İ", "É¾³ı´íÎó", JOptionPane.ERROR_MESSAGE);
 					} catch (SQLException e2) {
 						e2.printStackTrace();
 					}
@@ -98,7 +99,7 @@ public class DeleteT implements ActionListener {
 		button.setBounds(79, 174, 93, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("é€€å‡º");
+		JButton button_1 = new JButton("ÍË³ö");
 		button_1.addActionListener(this);
 		button_1.setBounds(232, 174, 93, 23);
 		frame.getContentPane().add(button_1);
@@ -107,7 +108,7 @@ public class DeleteT implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("é€€å‡º")){
+		if(e.getActionCommand().equals("ÍË³ö")){
 			new AllFunction().frame.setVisible(true);
 			this.frame.dispose();
 		}

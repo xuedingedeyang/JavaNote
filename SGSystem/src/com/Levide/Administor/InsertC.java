@@ -55,29 +55,29 @@ public class InsertC implements ActionListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("æ·»åŠ è¯¾ç¨‹åŸºæœ¬ä¿¡æ¯");
+		frame.setTitle("Ìí¼Ó¿Î³Ì»ù±¾ĞÅÏ¢");
 		frame.setBounds(100, 100, 465, 358);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-		JLabel label = new JLabel("æ·»åŠ è¯¾ç¨‹åŸºæœ¬ä¿¡æ¯");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 30));
+		JLabel label = new JLabel("Ìí¼Ó¿Î³Ì»ù±¾ĞÅÏ¢");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 30));
 		label.setBounds(83, 10, 264, 59);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel(" è¯¾  å·ï¼š");
+		JLabel label_1 = new JLabel(" ¿Î  ºÅ£º");
 		label_1.setBounds(68, 81, 54, 15);
 		frame.getContentPane().add(label_1);
 		
-		JLabel label_2 = new JLabel(" è¯¾  åï¼š");
+		JLabel label_2 = new JLabel(" ¿Î  Ãû£º");
 		label_2.setBounds(68, 121, 54, 15);
 		frame.getContentPane().add(label_2);
 		
-		JLabel label_3 = new JLabel(" å­¦  æ—¶ï¼š");
+		JLabel label_3 = new JLabel(" Ñ§  Ê±£º");
 		label_3.setBounds(68, 164, 54, 15);
 		frame.getContentPane().add(label_3);
 		
-		JLabel label_4 = new JLabel(" å­¦  åˆ†ï¼š");
+		JLabel label_4 = new JLabel(" Ñ§  ·Ö£º");
 		label_4.setBounds(68, 204, 54, 15);
 		frame.getContentPane().add(label_4);
 		
@@ -98,13 +98,13 @@ public class InsertC implements ActionListener {
 		frame.getContentPane().add(textArea3);
 		
 		
-		JButton button = new JButton("æäº¤");
+		JButton button = new JButton("Ìá½»");
 		button.addActionListener(this);
 		
 		button.setBounds(132, 267, 93, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("é€€å‡º");
+		JButton button_1 = new JButton("ÍË³ö");
 		button_1.addActionListener(this);
 		button_1.setBounds(254, 267, 93, 23);
 		frame.getContentPane().add(button_1);
@@ -116,10 +116,10 @@ public class InsertC implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("é€€å‡º")){
+		if(e.getActionCommand().equals("ÍË³ö")){
 			new AllFunction().frame.setVisible(true);
 			this.frame.dispose();
-		}else if(e.getActionCommand().equals("æäº¤")){
+		}else if(e.getActionCommand().equals("Ìá½»")){
 			String Cno = textArea.getText();
 			String Cname = textArea1.getText();
 			String Ctime = textArea2.getText();
@@ -136,17 +136,19 @@ public class InsertC implements ActionListener {
 				e2.printStackTrace();
 			}
 			try {
-				PreparedStatement ps = conn.prepareStatement("insert into course values(?,?,?,?)");				
+				PreparedStatement ps = conn.prepareStatement("insert into course(Cno, Cname, Ctime, Ccredit) values(?,?,?,?)");
 				ps.setString(1, course.getCno());
 				ps.setString(2, course.getCname());
 				ps.setString(3, course.getCtime());
 				ps.setString(4, course.getCcredit());
+
 				ps.executeUpdate();
 				conn.commit();
+				JOptionPane.showMessageDialog(frame,"±£´æ³É¹¦");
 			} catch (SQLException e1) {
 				try {
 					conn.rollback();
-					JOptionPane.showMessageDialog(null, "è¯·æ£€æŸ¥æ‰€è¾“å…¥çš„æ•°æ®", "æ’å…¥é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Çë¼ì²éËùÊäÈëµÄÊı¾İ", "²åÈë´íÎó", JOptionPane.ERROR_MESSAGE);
 				} catch (SQLException e2) {
 					e2.printStackTrace();
 				}

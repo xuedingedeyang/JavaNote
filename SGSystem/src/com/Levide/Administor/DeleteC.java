@@ -15,9 +15,13 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
+import com.example.DAO.CourseDao;
+import com.example.bean.Course;
+
 public class DeleteC implements ActionListener {
 
 	JFrame frame;
+	CourseDao cd;
 
 	/**
 	 * Launch the application.
@@ -46,19 +50,20 @@ public class DeleteC implements ActionListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		cd = new CourseDao();
 		frame = new JFrame();
-		frame.setTitle("åˆ é™¤æŒ‡å®šè¯¾ç¨‹ä¿¡æ¯");
+		frame.setTitle("É¾³ıÖ¸¶¨¿Î³ÌĞÅÏ¢");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel label = new JLabel("åˆ é™¤æŒ‡å®šè¯¾ç¨‹ä¿¡æ¯");
-		label.setFont(new Font("åæ–‡æ¥·ä½“", Font.BOLD, 30));
+		frame.setLocationRelativeTo(null);
+		JLabel label = new JLabel("É¾³ıÖ¸¶¨¿Î³ÌĞÅÏ¢");
+		label.setFont(new Font("»ªÎÄ¿¬Ìå", Font.BOLD, 30));
 		label.setBounds(71, 10, 272, 44);
 		frame.getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel("è¯·è¾“å…¥è¯¾ç¨‹å·ï¼š");
-		label_1.setFont(new Font("åæ–‡æ¥·ä½“", Font.PLAIN, 18));
+		JLabel label_1 = new JLabel("ÇëÊäÈë¿Î³ÌºÅ£º");
+		label_1.setFont(new Font("»ªÎÄ¿¬Ìå", Font.PLAIN, 18));
 		label_1.setBounds(57, 87, 126, 23);
 		frame.getContentPane().add(label_1);
 		
@@ -66,10 +71,15 @@ public class DeleteC implements ActionListener {
 		textArea.setBounds(179, 88, 164, 22);
 		frame.getContentPane().add(textArea);
 		
-		JButton button = new JButton("åˆ é™¤");
+		JButton button = new JButton("É¾³ı");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String Cno = textArea.getText();
+				String cno = textArea.getText();
+				Course c = cd.getCourseByCno(cno);
+				if(c==null){
+					JOptionPane.showMessageDialog(null, "Ã»ÓĞ¸Ã¿Î³Ì");
+				}else{
 				
 				Connection conn = null;	
 				conn = ConnectionFactory.getInstance().makeConnection();
@@ -84,21 +94,23 @@ public class DeleteC implements ActionListener {
 					ps.setString(1, Cno);
 					ps.executeUpdate();
 					conn.commit();
+					JOptionPane.showMessageDialog(frame,"É¾³ı³É¹¦");
 				} catch (SQLException e1) {
 					try {
 						conn.rollback();
-						JOptionPane.showMessageDialog(null, "è¯·æ£€æŸ¥æ‰€è¾“å…¥çš„æ•°æ®", "åˆ é™¤é”™è¯¯", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Çë¼ì²éËùÊäÈëµÄÊı¾İ", "É¾³ı´íÎó", JOptionPane.ERROR_MESSAGE);
 					} catch (SQLException e2) {
 						e2.printStackTrace();
 					}
 					e1.printStackTrace();
+				}
 				}
 			}
 		});
 		button.setBounds(79, 174, 93, 23);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("é€€å‡º");
+		JButton button_1 = new JButton("ÍË³ö");
 		button_1.addActionListener(this);
 		button_1.setBounds(232, 174, 93, 23);
 		frame.getContentPane().add(button_1);
@@ -107,7 +119,7 @@ public class DeleteC implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("é€€å‡º")){
+		if(e.getActionCommand().equals("ÍË³ö")){
 			new AllFunction().frame.setVisible(true);
 			this.frame.dispose();
 		}

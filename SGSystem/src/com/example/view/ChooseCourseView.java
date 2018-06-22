@@ -119,8 +119,6 @@ public class ChooseCourseView implements ActionListener{
 			new StudentView(sno).frame.setVisible(true);
 			this.frame.dispose();
 		}
-		
-		
 	}
 }
 
